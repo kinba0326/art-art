@@ -1,0 +1,11 @@
+<h1>＜ジャンル別＞</h1>
+<div class="contents row">
+  <% @selects.each do |select| %>
+    <div class="content_post" style="background-image: url(<%= select.image %>);">
+      <%= simple_format(select.text) %>
+      <span class="name">
+        <%= select.name %>
+      </span>
+    </div>
+  <% end %>
+</div>

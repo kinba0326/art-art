@@ -1,0 +1,32 @@
+<div class ="contents row">
+  <div class="content_post" style="background-image: url(<%= @art.image %>);">
+    <% if user_signed_in? && current_user.id == @art.user_id %>
+      <div class="more">
+        <span><%= image_tag 'arrow_top.png' %></span>
+        <ul class="more_list">
+          <li>
+            <%= link_to '編集', "/arts/#{@art.id}/edit", method: :get %>
+          </li>
+          <li>
+            <%= link_to '削除', "/arts/#{@art.id}", method: :delete %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <%= simple_format(@art.text) %>
+    <span class="name">
+      <a href="/users/<%= @art.user.id %>">
+        <span>作者</span><%= @art.user.nickname %>
+      </a>
+    </span>
+  </div>
+    <div class="container">
+    <% if current_user %>
+      <%= form_with(model: [@art, @comment], local: true) do |form| %>
+        <%= form.submit "買い物カゴに入れる" %>
+      <% end %>
+    <% else %>
+      <strong><p>   ＜作品の購入には新規登録/ログインが必要です＞   </p></strong>
+    <% end %>
+  </div>
+</div>
