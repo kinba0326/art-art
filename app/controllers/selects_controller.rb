@@ -1,5 +1,5 @@
 class SelectsController < ApplicationController
-  def index 
-    @selects = Select.all 
+  def index
+    @arts = Art.includes(:user).order("updated_at DESC").page(params[:page]).per(60)
   end
 end

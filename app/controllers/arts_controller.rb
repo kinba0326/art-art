@@ -3,7 +3,7 @@ class ArtsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :search]
   
   def index
-    @arts = Art.includes(:user).order("created_at DESC").page(params[:page]).per(30)
+    @arts = Art.includes(:user).order("created_at DESC").page(params[:page]).per(24)
   end
 
   def new

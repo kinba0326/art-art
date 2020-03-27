@@ -1,11 +1,22 @@
-<h1>＜ジャンル別＞</h1>
-<div class="contents row">
-  <% @selects.each do |select| %>
-    <div class="content_post" style="background-image: url(<%= select.image %>);">
-      <%= simple_format(select.text) %>
-      <span class="name">
-        <%= select.name %>
-      </span>
-    </div>
-  <% end %>
+<div class="menu"> 
+    <%= link_to "✏︎ ジャンルで探す", "/selects/" %>
 </div>
+<div class="menu"> 
+    <%= link_to "✏︎ 人気作者", "/rankings/" %>
+</div>
+<div class="menu"> 
+    <%= link_to "✏︎ セール作品" %>
+</div>
+
+<%= form_with(url: search_arts_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "タイトル名で検索する", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+<% end %>
+<h1>＜作品一覧＞</h1>
+<div class="contents row">
+  <% @arts.each do |art| %>
+    <%= render partial: "art", locals: { art: art } %>
+  <% end %>
+    
+</div>
+<%= paginate(@arts) %>
