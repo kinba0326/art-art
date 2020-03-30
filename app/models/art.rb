@@ -3,6 +3,8 @@ class Art < ApplicationRecord
   belongs_to :user
   has_many :comments
 
+  
+
   def self.search(search)
     return Art.all unless search
     Art.where('text LIKE(?)', "%#{search}%")
